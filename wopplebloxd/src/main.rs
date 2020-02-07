@@ -1,4 +1,10 @@
 extern crate clap;
+extern crate env_logger; 
+
+#[macro_use]
+extern crate tower_web;
+
+mod http_server;
 
 use std::process;
 use clap::{Arg, App, SubCommand};
@@ -26,7 +32,10 @@ fn main() {
     
     match matches.subcommand_name() {
         Some("server") => {
-            println!("Hello, server!");
+            let port_number = matches.value_of("port").unwrap()
+                .parse().expect("Error: Invalid port number");
+            
+            http_server::start(port_number);
         }
         None => {
             println!("Error: No subcommand specified (try --help)");

@@ -7,6 +7,9 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-toml = "0.5.5"	# Configuration file parsing
-actix = "0.9.0"	# Web framework
-clap = "2.33.0"	# CLI argument parser
+toml = "0.5.5"			# Configuration file parsing
+clap = "2.33.0"			# CLI argument parser
+actix-web = "2.0.0"		# Web framework
+
+# tower-web = "0.3.7"		# Web framework
+env_logger = "0.7.1"	# Logging (but we might change this later)
