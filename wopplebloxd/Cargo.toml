@@ -7,11 +7,14 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-toml = "0.5.5"			# Configuration file parsing
-clap = "2.33.0"			# CLI argument parser
+toml = "0.5"			# Configuration file parsing
+clap = "2.33"			# CLI argument parser
 actix-web = "2.0"		# Web framework
 actix-rt = "1.0"
+# actix-service = "1.0"
 
 
-log = "0.4.0"			# Apparently Rust has an entire logging setup - this is the base crate
-pretty_env_logger = "0.4.0"	# The logging implementation for the above
+# futures = "0.3"			# Like JS Promises but in Rust, apparently
+
+log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
+pretty_env_logger = "0.4"	# The logging implementation for the above

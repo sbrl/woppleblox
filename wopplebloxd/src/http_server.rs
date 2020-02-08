@@ -1,4 +1,7 @@
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{/*web, */App, HttpResponse, HttpServer, Responder};
+use actix_web::middleware::Logger;
+// use actix_service::Service;
+// use futures::future::FutureExt;
 
 #[actix_rt::main]
 pub async fn start(port: i16) -> std::io::Result<()> {
@@ -8,6 +11,7 @@ pub async fn start(port: i16) -> std::io::Result<()> {
     
     HttpServer::new(|| {
         App::new()
+            .wrap(Logger::default())
             .service(index)
     })
     .bind(address)?
