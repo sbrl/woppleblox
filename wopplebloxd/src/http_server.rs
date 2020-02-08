@@ -17,6 +17,10 @@ pub async fn start(port: i16) -> std::io::Result<()> {
     info!("Starting listener on http://{}", address);
     
     HttpServer::new(|| {
+        /*
+         * TODO: Plan out the routes here.
+         * We may be able to snaffle some of this from the Node.js version.
+         */
         App::new()
             .data(GlobalState::default())
             .wrap(Logger::default())
