@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Make sure the current directory is the location of this script to simplify matters
+cd "$(dirname "$(readlink -f "$0")")";
+################
+### Settings ###
+################
+
+# The name of this project
+project_name="woppleblox";
+
+# The path to the lantern build engine git submodule
+lantern_path="./lantern-build-engine";
+
+###
+# Custom Settings
+###
+
+# Put any custom settings here.
+build_output_folder="./dist";
+
+###############################################################################
+
+# Check out the lantern git submodule if needed
+if [ ! -f "${lantern_path}/lantern.sh" ]; then git submodule update --init "${lantern_path}"; fi
+
+source "${lantern_path}/lantern.sh";
+
+if [[ "$#" -lt 1 ]]; then
+	echo -e "${FBLE}${project_name}${RS} build script";
+	echo -e "    by Starbeamrainbowlabs";
+	echo -e "${LC}Powered by the lantern build engine, v${version}${RS}";
+	echo -e "";
+	echo -e "${CSECTION}Usage${RS}";
+	echo -e "    ./build ${CTOKEN}{action}${RS} ${CTOKEN}{action}${RS} ${CTOKEN}{action}${RS} ...";
+	echo -e "";
+	echo -e "${CSECTION}Available actions${RS}";
+	echo -e "    ${CACTION}setup${RS}            - Perform initial setup";
+	echo -e "    ${CACTION}run${RS}              - Auto-build wopplebloxd and run it with cargo";
+	echo -e "";
+	
+	exit 1;
+fi
+
+###############################################################################
+
+task_setup() {
+	task_begin "Setting up";
+	
+	check_command git true;
+	check_command cargo true;
+	
+	subtask_begin "Initialising submodules";
+	git submodule update --init;
+	subtask_end $?;
+	
+	task_end 0;
+}
+
+task_run() {
+	task_begin "Running wopplebloxd in server mode";
+	
+	if [[ -z "${RUST_LOG}" ]]; then
+		echo -e "${HC}\$${RS} export RUST_LOG=debug";
+		export RUST_LOG="debug";
+	fi
+	
+	execute cargo run -- server;
+	
+	task_end $?;
+}
+
+
+###############################################################################
+
+tasks_run $@;
