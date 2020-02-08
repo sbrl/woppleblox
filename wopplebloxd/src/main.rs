@@ -42,8 +42,10 @@ fn main() {
             let port_number = matches.value_of("port").unwrap()
                 .parse().expect("Error: Invalid port number");
             
+            let app = http_server::WopplebloxApp::new();
+            
             // Start the HTTP server and handle the result
-            match http_server::start(port_number) {
+            match app.start(port_number) {
                 Ok(_) => {
                     info!("Server exited normally.");
                 },
