@@ -9,7 +9,9 @@ edition = "2018"
 [dependencies]
 toml = "0.5.5"			# Configuration file parsing
 clap = "2.33.0"			# CLI argument parser
-actix-web = "2.0.0"		# Web framework
+actix-web = "2.0"		# Web framework
+actix-rt = "1.0"
 
-# tower-web = "0.3.7"		# Web framework
-env_logger = "0.7.1"	# Logging (but we might change this later)
+
+log = "0.4.0"			# Apparently Rust has an entire logging setup - this is the base crate
+pretty_env_logger = "0.4.0"	# The logging implementation for the above

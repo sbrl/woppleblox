@@ -1,15 +1,20 @@
 extern crate clap;
-extern crate env_logger; 
 
+extern crate pretty_env_logger; 
 #[macro_use]
-extern crate tower_web;
+extern crate log;
 
 mod http_server;
 
 use std::process;
+
 use clap::{Arg, App, SubCommand};
 
 fn main() {
+    // Initialise the logging system
+    pretty_env_logger::init();
+    
+    // Initialise the application itself    
     let matches = App::new("Woppleblox")
         .version("0.1")
         .author("Starbeamrainbowlabs")
@@ -35,7 +40,16 @@ fn main() {
             let port_number = matches.value_of("port").unwrap()
                 .parse().expect("Error: Invalid port number");
             
-            http_server::start(port_number);
+            // Start the HTTP server and handle the result
+            match http_server::start(port_number) {
+                Ok(_) => {
+                    info!("Server exited normally.");
+                },
+                Err(message) => {
+                    error!("Error: The HTTP server fell over! Details:");
+                    error!("{}", message);
+                }
+            }
         }
         None => {
             println!("Error: No subcommand specified (try --help)");
