@@ -7,6 +7,9 @@ mod global_state;
 
 use global_state::GlobalState;
 
+// TODO: This could be in a class? Or a struct with an impl....
+// Then we could take in a (read-only) settings object in the constructor
+
 #[actix_rt::main]
 pub async fn start(port: i16) -> std::io::Result<()> {
     let address = format!("127.0.0.1:{}", port);
@@ -19,6 +22,7 @@ pub async fn start(port: i16) -> std::io::Result<()> {
             .wrap(Logger::default())
             .service(index)
     })
+    .keep_alive(120) // TODO: Read this from a config file here
     .bind(address)?
     .run()
     .await

@@ -35,6 +35,8 @@ fn main() {
                 .default_value("3500"))
         .get_matches();
     
+    // TODO: Read the config file here
+    
     match matches.subcommand_name() {
         Some("server") => {
             let port_number = matches.value_of("port").unwrap()
