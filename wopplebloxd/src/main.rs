@@ -5,6 +5,7 @@ extern crate pretty_env_logger;
 extern crate log;
 
 mod http_server;
+mod settings;
 
 use std::process;
 
@@ -34,6 +35,7 @@ fn main() {
                 .takes_value(true)
                 .default_value("3500"))
         .get_matches();
+    
     
     // TODO: Read the config file here
     

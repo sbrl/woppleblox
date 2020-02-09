@@ -7,12 +7,14 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-toml = "0.5"			# Configuration file parsing
+serde = "1.0"
+toml = "0.5"			# TOML module
+
 clap = "2.33"			# CLI argument parser
+
 actix-web = "2.0"		# Web framework
 actix-rt = "1.0"
 # actix-service = "1.0"
-
 
 # futures = "0.3"			# Like JS Promises but in Rust, apparently
 
