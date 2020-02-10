@@ -7,7 +7,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_derive = "1.0"
 toml = "0.5"			# TOML module
 
 clap = "2.33"			# CLI argument parser
@@ -17,6 +18,8 @@ actix-rt = "1.0"
 # actix-service = "1.0"
 
 # futures = "0.3"			# Like JS Promises but in Rust, apparently
+
+diesel = { version = "1.0.0", features = ["sqlite"] }
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
 pretty_env_logger = "0.4"	# The logging implementation for the above

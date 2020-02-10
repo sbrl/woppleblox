@@ -36,7 +36,8 @@ fn main() {
                 .default_value("3500"))
         .get_matches();
     
-    
+    let mut settings = settings::SettingsManager::new();
+    settings.load_settings_file(matches.value_of("config").expect("Error: No config filepath specified (try --help)").to_string());
     // TODO: Read the config file here
     
     match matches.subcommand_name() {
@@ -44,7 +45,7 @@ fn main() {
             let port_number = matches.value_of("port").unwrap()
                 .parse().expect("Error: Invalid port number");
             
-            let app = http_server::WopplebloxApp::new();
+            let app = http_server::WopplebloxApp::new(settings);
             
             // Start the HTTP server and handle the result
             match app.start(port_number) {

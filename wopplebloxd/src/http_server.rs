@@ -6,17 +6,20 @@ use actix_web::middleware::Logger;
 mod global_state;
 
 use global_state::GlobalState;
+use crate::settings::{SettingsManager};
 
 // TODO: This could be in a class? Or a struct with an impl....
 // Then we could take in a (read-only) settings object in the constructor
 
 pub struct WopplebloxApp {
-    
+    settings : SettingsManager
 }
 
 impl WopplebloxApp {
-    pub fn new() -> WopplebloxApp {
-        WopplebloxApp { }
+    pub fn new(settings : SettingsManager) -> WopplebloxApp {
+        WopplebloxApp {
+            settings : settings
+        }
     }
     
     #[actix_rt::main]
@@ -40,9 +43,8 @@ impl WopplebloxApp {
         .run()
         .await
     }
-
     
-
+    
 }
 
 async fn index(state : web::Data<GlobalState>) -> impl Responder {
