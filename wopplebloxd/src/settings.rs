@@ -40,11 +40,7 @@ pub struct SettingsManager {
 impl SettingsManager {
     pub fn new() -> SettingsManager {
         SettingsManager {
-            settings : toml::de::from_str(r#"
-[http]
-bind_address = "127.0.0.1"
-port = 3010
-"#).expect("Error: Failed to parse default settings definition")
+            settings : Settings::default()
         }
     }
     
