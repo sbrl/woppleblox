@@ -1,8 +1,10 @@
 extern crate clap;
-
 extern crate pretty_env_logger; 
+
 #[macro_use]
 extern crate log;
+#[macro_use]
+extern crate rust_embed;
 
 mod http_server;
 mod settings;

@@ -4,6 +4,7 @@ use actix_web::middleware::Logger;
 // use futures::future::FutureExt;
 
 mod global_state;
+mod handlers;
 
 use global_state::GlobalState;
 use crate::settings::{SettingsManager};
@@ -34,8 +35,9 @@ impl WopplebloxApp {
              * We may be able to snaffle some of this from the Node.js version.
              */
             App::new()
-                .data(GlobalState::default())
+                .data(GlobalState::new())
                 .wrap(Logger::default())
+                .route("/static/{filepath:.*}", web::get().to(handlers::handle_static))
                 .route("/", web::get().to(index))
         })
         .keep_alive(120) // TODO: Read this from a config file here

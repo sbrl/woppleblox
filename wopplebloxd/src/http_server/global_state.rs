@@ -7,7 +7,7 @@ impl GlobalState {
     // pub fn new() -> GlobalState {
     //     GlobalState::default()
     // }
-    pub fn default() -> GlobalState {
+    pub fn new() -> GlobalState {
         return GlobalState {
             sitename: "Woppleblox".to_string()
         }
