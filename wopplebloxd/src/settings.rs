@@ -21,7 +21,7 @@ impl SettingsManager {
     pub fn load_settings_file(&mut self, filename : String) {
         let config_str = match fs::read_to_string(&filename) {
             Ok(str) => str,
-            Err(error) => {
+            Err(_error) => {
                 // TODO: Check if this is an std::io::ErrorKind::NotFound
                 
                 if !Path::new("config.toml").exists() {
