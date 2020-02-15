@@ -16,6 +16,7 @@ clap = "2.33"			# CLI argument parser
 actix-web = "2.0"		# Web framework
 actix-rt = "1.0"
 # actix-service = "1.0"
+mime_guess = "2"
 
 rust-embed = "5.2.0"
 
@@ -24,4 +25,4 @@ rust-embed = "5.2.0"
 diesel = { version = "1.0.0", features = ["sqlite"] }
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
-pretty_env_logger = "0.4"	# The logging implementation for the above
+pretty_env_logger = "0.4"	# The logging implementation we've chosen for the above

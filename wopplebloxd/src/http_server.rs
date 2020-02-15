@@ -27,6 +27,8 @@ impl WopplebloxApp {
     pub async fn start(&self, port: i16) -> std::io::Result<()> {
         let address = format!("127.0.0.1:{}", port);
         
+        handlers::print_embedded_files();
+        
         info!("Starting listener on http://{}", address);
         
         HttpServer::new(|| {
