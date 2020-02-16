@@ -17,16 +17,11 @@ impl Default for SettingsHttp {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Settings {
-    // Whether we should write a config file if it doesn't exist already or not.
-    #[serde(skip)]
-    pub config_write : bool,
-    
     pub http : SettingsHttp
 }
 impl Default for Settings {
     fn default() -> Settings {
         Settings {
-            config_write: false,
             http: SettingsHttp::default()
         }
     }

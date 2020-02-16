@@ -1,49 +1,47 @@
 use std::fs;
-use std::path::Path;
 
-// #[macro_use] // for toml::toml!, which are aren't currently using
-use toml;
+// for toml::toml!, which are aren't currently using
+// #[macro_use]
+// use toml;
+
 
 mod definitions;
 pub use definitions::Settings;
+
+// Adapted from https://stackoverflow.com/a/47142105/1460422 for TOML, but never actually used
+// use toml::Value;
+// 
+// fn merge(a: &mut Value, b: Value) {
+//     match (a, b) {
+//         (a @ &mut Value::Table(_), Value::Table(b)) => {
+//             let a = a.as_table_mut().unwrap();
+//             for (k, v) in b {
+//                 // This is ok because it the bool false should always be overwritten with v
+//                 merge(a.entry(k).or_insert(Value::Boolean(false)), v);
+//             }
+//         }
+//         (a, b) => *a = b,
+//     }
+// }
 
 impl Settings {
     pub fn new() -> Settings {
         Settings::default()
     }
     
-    pub fn load_settings_file(&mut self, filename : String) {
+    /// Creates a new Settings object from the contents of a given (TOML) file.
+    pub fn from_file(filename : String) -> Settings {
         let config_str = match fs::read_to_string(&filename) {
             Ok(str) => str,
-            Err(_error) => {
-                // TODO: Check if this is an std::io::ErrorKind::NotFound
-                
-                if !Path::new("config.toml").exists() {
-                    match fs::write(
-                        "config.toml",
-                        toml::to_string_pretty(&self).expect("Error: Failed to serialise default settings O.o (this is a bug, please get in touch)")
-                    ) {
-                        Ok(_) => (),
-                        Err(error) => {
-                            warn!("Warning: Didn't find a config file, but failed to write a default one to disk.");
-                            warn!("Details: {}", error);
-                        }
-                    }
-                }
+            Err(error) => {
                 // println!("{}", error);
-                
-                // Zero-length string = use default settings
-                "".to_string()
+                panic!(error); // Oops, something went wrong while reading the config file
             }
         };
         
-        // If it's of length zero, then jsut use the default settings that are already loaded
-        if config_str.len() == 0 { return }
-        
-        let config_obj = toml::from_str(&config_str).unwrap();
-        info!("{:?}", config_obj);
-        
-        self.settings = config_obj;
+        let config_obj : Settings = toml::from_str(&config_str).unwrap();
+        // info!("{:?}", config_obj);
+        return config_obj;
     }
     
 }
