@@ -1,6 +1,6 @@
 # woppleblox
 
-No, not the fictional company - a microblogging app with a  focus on being lightweight, easy to setup / install, and open.
+No, not the fictional company - a micro-blogging app with a  focus on being lightweight, easy to setup / install, and open.
 
 ## Principles
 
