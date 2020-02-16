@@ -28,6 +28,9 @@ fn main() {
             .help("Specifies the config filename location")
             .takes_value(true)
             .default_value("config.toml"))
+        .arg(Arg::with_name("config-write")
+            .long("config-write")
+            .help("If the config file does not exist, create it"))
         .subcommand(SubCommand::with_name("server")
             .about("Starts the server"))
             .arg(Arg::with_name("port")
@@ -38,19 +41,30 @@ fn main() {
                 .default_value("3500"))
         .get_matches();
     
-    let mut settings = settings::SettingsManager::new();
+    // Create the settings object
+    let mut settings = settings::Settings::new();
+    
+    // Load in select CLI arguments
+    if matches.is_present("config-write") { settings.config_write = true; }
+    if matches.is_present("port") {
+        settings.http.port = matches.value_of("port").unwrap()
+            .parse().expect("Error: Invalid port number");
+    }
+    
+    // Load the config file
     settings.load_settings_file(matches.value_of("config").expect("Error: No config filepath specified (try --help)").to_string());
+    
     // TODO: Read the config file here
     
     match matches.subcommand_name() {
         Some("server") => {
-            let port_number = matches.value_of("port").unwrap()
-                .parse().expect("Error: Invalid port number");
+            
             
             let app = http_server::WopplebloxApp::new(settings);
             
             // Start the HTTP server and handle the result
-            match app.start(port_number) {
+            // Note that we pass in the port number here to satisfy actix_rt (are we even using it?)
+            match app.start(settings.http.port) {
                 Ok(_) => {
                     info!("Server exited normally.");
                 },

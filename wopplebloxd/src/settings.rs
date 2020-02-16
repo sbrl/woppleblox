@@ -5,17 +5,11 @@ use std::path::Path;
 use toml;
 
 mod definitions;
-use definitions::{ Settings };
+pub use definitions::Settings;
 
-pub struct SettingsManager {
-    settings : Settings
-}
-
-impl SettingsManager {
-    pub fn new() -> SettingsManager {
-        SettingsManager {
-            settings : Settings::default()
-        }
+impl Settings {
+    pub fn new() -> Settings {
+        Settings::default()
     }
     
     pub fn load_settings_file(&mut self, filename : String) {
@@ -27,7 +21,7 @@ impl SettingsManager {
                 if !Path::new("config.toml").exists() {
                     match fs::write(
                         "config.toml",
-                        toml::to_string_pretty(&self.settings).expect("Error: Failed to serialise default settings O.o (this is a bug, please get in touch)")
+                        toml::to_string_pretty(&self).expect("Error: Failed to serialise default settings O.o (this is a bug, please get in touch)")
                     ) {
                         Ok(_) => (),
                         Err(error) => {

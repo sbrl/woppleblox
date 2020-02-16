@@ -7,17 +7,17 @@ mod global_state;
 mod handlers;
 
 use global_state::GlobalState;
-use crate::settings::{SettingsManager};
+use crate::settings::{Settings};
 
 // TODO: This could be in a class? Or a struct with an impl....
 // Then we could take in a (read-only) settings object in the constructor
 
 pub struct WopplebloxApp {
-    settings : SettingsManager
+    settings : Settings
 }
 
 impl WopplebloxApp {
-    pub fn new(settings : SettingsManager) -> WopplebloxApp {
+    pub fn new(settings : Settings) -> WopplebloxApp {
         WopplebloxApp {
             settings : settings
         }
