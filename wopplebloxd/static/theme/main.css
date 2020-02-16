@@ -1,3 +1,104 @@
-/*
- * This is a test
- */
+:root {
+	--bg-page: #aae8cd;
+	--bg-section: #3a7e3b; /* TODO: Change this to something more colourful */
+	--bg-item: #148898;
+	
+	--text-main: #0a231d;
+	--text-alt: #30bec0;
+	
+	--shadow: hsla(0, 0%, 65%, 0.5);
+}
+
+html, body { font-size: 100%; }
+body {
+    font-family: sans-serif;
+	
+	background: var(--bg-page);
+	color: var(--text-main);
+	
+	display: grid;
+	grid-template-columns: 10% auto 10%;
+	grid-template-rows: 10em auto auto;
+	grid-template-areas: ". header ."
+		". content ."
+		". footer .";
+}
+
+body > header {
+	grid-area: header;
+	display: flex;
+	
+	/* TODO: Push the search bxo to the right and center the title. Also put the logo next to the centered title */
+	justify-content: space-evenly;
+	align-items: center;
+}
+body > header .logo { max-width: 6em; }
+
+main {
+	grid-area: content;
+}
+main > header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+main > header .logo { max-width: 3em; margin: 0.5em; }
+
+section .post {
+	background: var(--bg-section);
+	margin: 1em;
+	padding: 1em;
+	
+	box-shadow: 0.5em 0.5em 1em var(--shadow);
+}
+
+body > footer {
+	grid-area: footer;
+}
+
+
+/*****************************************************************************/
+
+
+img.logo {
+	vertical-align: middle;
+}
+
+
+/*****************************************************************************/
+
+title { string-set: page-title content(text); }
+
+/* Special tweaks for paged media (e.g. PDFs) */
+@page {
+	font-family: sans-serif;
+	background: #f3f3f3; /* Set the background colour to cover the whole page */
+	
+	@top-right {
+		content: "By Starbeamrainbowlabs";
+		opacity: 0.6;
+	}
+	@bottom-right {
+		content: "Page " counter(page) " of " counter(pages);
+		opacity: 0.6;
+	}
+}
+
+
+/* A small tweak to things more responsive */
+iframe, object, embed, img, table	{ max-width: 100%; }
+
+/* Turn the user's cursor into a hand when over things they can click */
+button, summary { cursor: pointer; }
+
+th, td {
+	margin: 4px 6px;
+	padding: 4px 6px;
+}
+
+pre { page-break-inside: avoid; break-inside: avoid; }
+pre, code {
+	white-space: pre-wrap;
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
