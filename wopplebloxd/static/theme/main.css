@@ -1,15 +1,15 @@
 :root {
-	--bg-page: #aae8cd;
+	--bg-page: #a9ccd4;
 	--bg-section: #3a7e3b; /* TODO: Change this to something more colourful */
-	--bg-item: #148898;
+	--bg-item: #30bec0;
 	
-	--text-main: #0a231d;
-	--text-alt: #30bec0;
+	--text-main: #148898;
+	--text-alt: #0a231d;
 	
 	--shadow: hsla(0, 0%, 65%, 0.5);
 }
 
-html, body { font-size: 100%; }
+html, body { font-size: 100%; margin: 0; padding: 0; }
 body {
     font-family: sans-serif;
 	
@@ -46,7 +46,8 @@ main > header .logo { max-width: 3em; margin: 0.5em; }
 
 section .post {
 	background: var(--bg-section);
-	margin: 1em;
+	color: var(--text-alt);
+	margin: 1em 0;
 	padding: 1em;
 	
 	box-shadow: 0.5em 0.5em 1em var(--shadow);
@@ -54,6 +55,13 @@ section .post {
 
 body > footer {
 	grid-area: footer;
+	
+	padding: 1em 1em 3em 1em;
+	
+	background: var(--bg-section);
+	color: var(--text-alt);
+	
+	box-shadow: 0.5em 0.5em 1em var(--shadow);
 }
 
 
