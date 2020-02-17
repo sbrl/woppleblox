@@ -7,21 +7,23 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = { version = "1.0", features = ["derive"] }
-serde_derive = "1.0"
-toml = "0.5"			# TOML module
+serde = { version = "1.0", features = ["derive"] }	# Serialisation
+serde_derive = "1.0"	# Serialisation helper
+toml = "0.5"			# TOML serialisation module
 
 clap = "2.33"			# CLI argument parser
 
 actix-web = "2.0"		# Web framework
-actix-rt = "1.0"
+actix-rt = "1.0"		# Who knows?
 # actix-service = "1.0"
-mime_guess = "2"
 
-rust-embed = "5.2.0"
+rust-embed = "5.2.0"	# Embedded files
+mime_guess = "2"		# File type extension -> mime type converter
+askama = "0.9"			# Templating library
 
 # futures = "0.3"			# Like JS Promises but in Rust, apparently
 
+# Database ORM
 diesel = { version = "1.0.0", features = ["sqlite"] }
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
