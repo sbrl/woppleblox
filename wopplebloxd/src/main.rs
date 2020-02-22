@@ -6,8 +6,12 @@ extern crate log;
 #[macro_use]
 extern crate rust_embed;
 
+#[macro_use]
+extern crate askama;
+
 mod http_server;
 mod settings;
+mod templates;
 
 use std::fs;
 use std::process;
