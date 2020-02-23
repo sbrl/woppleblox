@@ -57,7 +57,15 @@ task_setup() {
 	task_end 0;
 }
 
+task_autoclean() {
+	task_begin "Cleaning out old artifacts";
+	cargo sweep --installed -r;
+	task_end "$?" "Failed to clean out old artifacts (try cargo install cargo-sweep)";
+}
+
 task_watch() {
+	tasks_run autoclean;
+	
 	task_begin "Watching for changes.";
 	
 	if [[ -z "${RUST_LOG}" ]]; then
