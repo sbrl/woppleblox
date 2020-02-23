@@ -36,6 +36,7 @@ if [[ "$#" -lt 1 ]]; then
 	echo -e "${CSECTION}Available actions${RS}";
 	echo -e "    ${CACTION}setup${RS}            - Perform initial setup";
 	echo -e "    ${CACTION}run${RS}              - Auto-build wopplebloxd and run it with cargo";
+	echo -e "    ${CACTION}run${RS}              - Watch for changes automatically";
 	echo -e "";
 	
 	exit 1;
@@ -54,6 +55,16 @@ task_setup() {
 	subtask_end $?;
 	
 	task_end 0;
+}
+
+task_watch() {
+	task_begin "Watching for changes.";
+	
+	if [[ -z "${RUST_LOG}" ]]; then
+		echo -e "${HC}\$${RS} export RUST_LOG=debug";
+		export RUST_LOG="debug";
+	fi
+	cargo watch -x 'run -- server';
 }
 
 task_run() {
