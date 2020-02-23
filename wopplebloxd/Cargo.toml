@@ -19,7 +19,7 @@ actix-rt = "1.0"		# Who knows?
 
 rust-embed = "5.2.0"	# Embedded files
 mime_guess = "2"		# File type extension -> mime type converter
-askama = "0.9"			# Templating library
+yarte = "0.7"			# Templating library
 
 # futures = "0.3"			# Like JS Promises but in Rust, apparently
 

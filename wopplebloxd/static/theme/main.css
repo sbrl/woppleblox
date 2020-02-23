@@ -1,10 +1,9 @@
 :root {
-	--bg-page: #a9ccd4;
-	--bg-section: #3a7e3b; /* TODO: Change this to something more colourful */
-	--bg-item: #30bec0;
-	
-	--text-main: #148898;
-	--text-alt: #0a231d;
+	--col-light: #f2e481;
+	--col-accent-light: #eac15b; /* TODO: Change this to something more colourful */
+	--col-main: #e93616;
+	--col-access-dark: #9d2e97;
+	--col-dark: #2d1a2a;
 	
 	--shadow: hsla(0, 0%, 65%, 0.5);
 }
@@ -13,29 +12,43 @@ html, body { font-size: 100%; margin: 0; padding: 0; }
 body {
     font-family: sans-serif;
 	
-	background: var(--bg-page);
-	color: var(--text-main);
+	background: var(--col-light);
+	color: var(--col-dark);
 	
+	min-height: 100vh;
 	display: grid;
 	grid-template-columns: 10% auto 10%;
-	grid-template-rows: 10em auto auto;
-	grid-template-areas: ". header ."
+	grid-template-rows: 3em auto 5em;
+	grid-template-areas: "header header header"
 		". content ."
 		". footer .";
 }
 
-body > header {
+body > nav {
 	grid-area: header;
 	display: flex;
+	flex-direction: row;
 	
 	/* TODO: Push the search bxo to the right and center the title. Also put the logo next to the centered title */
-	justify-content: space-evenly;
+	justify-content: left;
 	align-items: center;
+	
+	background: var(--col-main);
 }
-body > header .logo { max-width: 6em; }
+body > nav .logo { max-width: 6em; max-height: 100%; }
+body > nav h1 {
+	margin: 0 1em;
+}
+body > nav > form {
+	flex: 2;
+	
+	margin: 0 1em;
+	text-align: right;
+}
 
 main {
 	grid-area: content;
+	padding: 1em 1em 2em 1em;
 }
 main > header {
 	display: flex;
@@ -45,7 +58,7 @@ main > header {
 main > header .logo { max-width: 3em; margin: 0.5em; }
 
 section .post {
-	background: var(--bg-section);
+	background: var(--col-main);
 	color: var(--text-alt);
 	margin: 1em 0;
 	padding: 1em;
@@ -58,7 +71,7 @@ body > footer {
 	
 	padding: 1em 1em 3em 1em;
 	
-	background: var(--bg-section);
+	background: var(--col-main);
 	color: var(--text-alt);
 	
 	box-shadow: 0.5em 0.5em 1em var(--shadow);

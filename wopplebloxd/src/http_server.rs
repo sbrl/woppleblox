@@ -9,7 +9,7 @@ mod handlers;
 use global_state::GlobalState;
 use crate::settings::{Settings};
 use crate::templates;
-use askama::Template; // Apparently .render() is part of the trait (who'd have guessed?), so we need to use it here
+use yarte::Template; // Apparently .render() is part of the trait (who'd have guessed?), so we need to use it here
 
 // TODO: This could be in a class? Or a struct with an impl....
 // Then we could take in a (read-only) settings object in the constructor
@@ -57,7 +57,7 @@ async fn index(state : web::Data<GlobalState>) -> impl Responder {
     let body_text = (templates::MainTemplate {
         title: "Test page",
         content: &format!("Hello, world from {}!", state.sitename)
-    }).render().unwrap();
+    }).call().unwrap();
     
     HttpResponse::Ok().body(body_text)
 }

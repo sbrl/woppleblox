@@ -7,7 +7,7 @@ extern crate log;
 extern crate rust_embed;
 
 #[macro_use]
-extern crate askama;
+extern crate yarte;
 
 mod http_server;
 mod settings;
