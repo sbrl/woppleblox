@@ -1,3 +1,4 @@
+*.sqlite
 config.toml
 /target
 **/*.rs.bk

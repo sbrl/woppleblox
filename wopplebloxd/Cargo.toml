@@ -17,6 +17,8 @@ actix-web = "2.0"		# Web framework
 actix-rt = "1.0"		# Who knows?
 # actix-service = "1.0"
 
+futures = "*"
+
 rust-embed = "5.2.0"	# Embedded files
 mime_guess = "2"		# File type extension -> mime type converter
 yarte = "0.7"			# Templating library
@@ -28,7 +30,11 @@ yarte = "0.7"			# Templating library
 # schemamama = "*"
 # schemamama_rusqlite = "*"
 rusqlite = "0.21.0"
+r2d2 = "0.8.8"
+r2d2_sqlite = "0.14.0"
 refinery = "0.2.1"
+
+chrono = "0.4.11"
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
 pretty_env_logger = "0.4"	# The logging implementation we've chosen for the above

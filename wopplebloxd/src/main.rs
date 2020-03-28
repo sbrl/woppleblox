@@ -1,5 +1,6 @@
 extern crate clap;
 extern crate pretty_env_logger; 
+extern crate chrono;
 
 #[macro_use]
 extern crate log;
@@ -9,8 +10,10 @@ extern crate rust_embed;
 #[macro_use]
 extern crate yarte;
 
-mod http_server;
 mod settings;
+mod db;
+mod global_state;
+mod http_server;
 mod templates;
 
 use std::fs;
@@ -18,8 +21,10 @@ use std::process;
 use std::path::Path;
 
 use clap::{Arg, App, SubCommand};
+// use futures::executor::block_on;
 
 use settings::Settings;
+use global_state::GlobalState;
 
 fn main() {
     // Initialise the logging system
@@ -85,11 +90,16 @@ fn main() {
             // We _could_ copy the entirety of settings instead(?), but since we can avoid that we will.
             let port = settings.http.port;
             
+            let global_state = GlobalState::new(settings.clone());
             let app = http_server::WopplebloxApp::new(settings);
+            
             
             // Start the HTTP server and handle the result
             // Note that we pass in the port number here to satisfy actix_rt (are we even using it?)
-            match app.start(port) {
+            // block_on is from the futures crate and runs a future (basically a Promise) to completion. The .await syntax is weird - not sure what that actually does just yet.
+            // More advanced options are also available. More information: https://rust-lang.github.io/async-book/01_getting_started/04_async_await_primer.html
+            // match block_on(app.start(port, global_state)) {
+            match app.start(port, global_state) {
                 Ok(_) => {
                     info!("Server exited normally.");
                 },

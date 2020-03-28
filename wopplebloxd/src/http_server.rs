@@ -3,10 +3,9 @@ use actix_web::middleware::Logger;
 // use actix_service::Service;
 // use futures::future::FutureExt;
 
-mod global_state;
 mod handlers;
 
-use global_state::GlobalState;
+use crate::global_state::GlobalState;
 use crate::settings::{Settings};
 use crate::templates;
 use yarte::Template; // Apparently .render() is part of the trait (who'd have guessed?), so we need to use it here
@@ -26,28 +25,28 @@ impl WopplebloxApp {
     }
     
     #[actix_rt::main]
-    pub async fn start(&self, port: i16) -> std::io::Result<()> {
+    pub async fn start(&self, port: i16, global_state : GlobalState) -> std::io::Result<()> {
         let address = format!("127.0.0.1:{}", port);
         
         handlers::print_embedded_files();
         
         info!("Starting listener on http://{}", address);
         
-        HttpServer::new(|| {
+        HttpServer::new(move || {
             /*
              * TODO: Plan out the routes here.
              * We may be able to snaffle some of this from the Node.js version.
              */
             App::new()
-                .data(GlobalState::new())
+                .data(global_state.clone())
                 .wrap(Logger::default())
                 .route("/static/{filepath:.*}", web::get().to(handlers::handle_static))
                 .route("/", web::get().to(index))
         })
-        .keep_alive(120) // TODO: Read this from a config file here
-        .bind(address)?
-        .run()
-        .await
+            .keep_alive(120) // TODO: Read this from a config file here
+            .bind(address)? //.expect("Error: Failed to bind to address (is another processs using it?)")
+            .run()
+            .await
     }
     
     
