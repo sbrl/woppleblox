@@ -3,6 +3,8 @@ use r2d2_sqlite::{ self, SqliteConnectionManager };
 // use chrono::DateTime;
 
 mod dataclasses;
+mod definitions;
+mod migrations;
 
 // pub use dataclasses::{User, Alias, Post, Attachment};
 pub use dataclasses::user::User;
@@ -10,8 +12,8 @@ pub use dataclasses::alias::Alias;
 pub use dataclasses::post::Post;
 pub use dataclasses::attachment::Attachment;
 
-pub type Pool = r2d2::Pool<r2d2_sqlite::SqliteConnectionManager>;
-pub type Connection = r2d2::PooledConnection<r2d2_sqlite::SqliteConnectionManager>;
+use migrations::SqliteMigrator;
+use definitions::{ Pool, Connection };
 
 // pub use User;
 // pub use Alias;
@@ -42,6 +44,7 @@ impl Database {
     }
     
     pub fn init(&self) {
-        
+        let migrator = SqliteMigrator::default();
+        migrator.migrate(&mut self.con.get().expect("Error: Failed to get a connection form the pool to the SQLite database to perform database migrations on startup."));
     }
 }

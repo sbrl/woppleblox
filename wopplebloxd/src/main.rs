@@ -1,6 +1,10 @@
 extern crate clap;
 extern crate pretty_env_logger; 
+
 extern crate chrono;
+
+#[macro_use]
+extern crate refinery;
 
 #[macro_use]
 extern crate log;
