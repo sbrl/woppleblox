@@ -4,9 +4,8 @@
 CREATE TABLE users (
 	id INTEGER PRIMARY KEY,
 	username TEXT NOT NULL,
-	password TEXT NOT NULL,
+	password TEXT NOT NULL, -- Hashed, of course
 	date_created TEXT NOT NULL, -- An ISO-formatted datetime
-	filename_avatar TEXT, -- If null, then we could use gravatar etc instead?
 );
 
 CREATE TABLE aliases (
@@ -14,13 +13,20 @@ CREATE TABLE aliases (
 	name TEXT,
 	owner_id INTEGER, -- The ID of the user that owns this alias
 	date_created TEXT,
+	profile_description TEXT,
+	avatar_filename : TEXT -- If null, then we could use gravatar etc instead?
 );
 
 CREATE TABLE posts (
 	id INTEGER PRIMARY KEY,
-	alias INTEGER, -- The id of the alias that this post has been made under
+	alias_id INTEGER NOT NULL, -- The id of the alias that this post has been made under
 	date_created TEXT,
 	date_modified TEXT,
-	content TEXT,
-	attachment TEXT, -- filename
+	content TEXT, -- Rendered content (should we support markdown etc in the future)
 );
+
+CREATE TABLE attachments (
+	id INTEGER PRIMARY KEY,
+	post_id INTEGER NOT NULL,
+	filename TEXT NOT NULL
+)

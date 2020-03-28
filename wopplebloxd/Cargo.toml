@@ -24,7 +24,11 @@ yarte = "0.7"			# Templating library
 # futures = "0.3"			# Like JS Promises but in Rust, apparently
 
 # Database ORM
-diesel = { version = "1.0.0", features = ["sqlite"] }
+# diesel = { version = "1.0.0", features = ["sqlite"] }
+# schemamama = "*"
+# schemamama_rusqlite = "*"
+rusqlite = "0.21.0"
+refinery = "0.2.1"
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
 pretty_env_logger = "0.4"	# The logging implementation we've chosen for the above

@@ -36,7 +36,7 @@ if [[ "$#" -lt 1 ]]; then
 	echo -e "${CSECTION}Available actions${RS}";
 	echo -e "    ${CACTION}setup${RS}            - Perform initial setup";
 	echo -e "    ${CACTION}run${RS}              - Auto-build wopplebloxd and run it with cargo";
-	echo -e "    ${CACTION}run${RS}              - Watch for changes automatically";
+	echo -e "    ${CACTION}watch${RS}              - Watch for changes automatically";
 	echo -e "";
 	
 	exit 1;
