@@ -76,6 +76,8 @@ task_watch() {
 }
 
 task_run() {
+	tasks_run autoclean;
+	
 	task_begin "Running wopplebloxd in server mode";
 	
 	if [[ -z "${RUST_LOG}" ]]; then
