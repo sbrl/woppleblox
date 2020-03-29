@@ -65,4 +65,19 @@ impl UserRepository {
             &to_params_named(&user).unwrap().to_slice()
         )
     }
+    
+    pub fn delete_by_id(conn : Connection, id : i64) -> Result<usize> {
+        conn.execute_named(
+            &query_builder::delete(Self::TABLE_NAME)
+                .filter("id = :id")
+                .build(),
+            named_params!{
+                ":id": id
+            }
+        )
+    }
+    
+    pub fn delete(conn : Connection, user : User) -> Result<usize> {
+        Self::delete_by_id(conn, user.id)
+    }
 }
