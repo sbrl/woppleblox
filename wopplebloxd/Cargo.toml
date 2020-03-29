@@ -33,6 +33,7 @@ rusqlite = "0.21.0"
 r2d2 = "0.8.8"
 r2d2_sqlite = "0.14.0"
 refinery = "0.2.1"
+pinto = "0.6.1"
 
 chrono = "0.4.11"
 

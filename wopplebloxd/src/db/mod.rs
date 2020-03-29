@@ -5,6 +5,7 @@ use r2d2_sqlite::{ self, SqliteConnectionManager };
 mod dataclasses;
 mod definitions;
 mod migrations;
+mod repositories;
 
 // pub use dataclasses::{User, Alias, Post, Attachment};
 pub use dataclasses::user::User;

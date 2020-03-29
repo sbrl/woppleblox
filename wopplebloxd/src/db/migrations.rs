@@ -19,6 +19,7 @@ impl Default for SqliteMigrator {
 
 impl SqliteMigrator {
     pub fn migrate(&self, connection : &mut Connection) {
-        embedded::migrations::runner().run(&mut connection);
+        warn!("Warning: We haven't implemented database migrations yet");
+        // embedded::migrations::runner().run(&mut connection);
     }
 }

@@ -2,6 +2,7 @@ extern crate clap;
 extern crate pretty_env_logger; 
 
 extern crate chrono;
+extern crate pinto;
 
 #[macro_use]
 extern crate refinery;
