@@ -1,6 +1,6 @@
 use rusqlite::{ CachedStatement, Result, ToSql, MappedRows };
 use pinto::query_builder;
-use serde_rusqlite::from_rows;
+use serde_rusqlite::{ from_rows, to_params_named };
 
 use crate::db::definitions::{ Connection };
 use crate::db::{ User };
@@ -25,7 +25,8 @@ impl UserRepository {
         }
     }
     
-    pub fn query_get_by_id(conn : Connection, id : i64) -> Result<User> {
+    pub fn get_by_id(conn : Connection, id : i64) -> Result<User> {
+        // FUTURE: Write a macro to cut down on the boilerplate here
         let mut stmt = conn.prepare_cached(
             &query_builder::select(Self::TABLE_NAME)
                 .filter("id == :id")
@@ -37,7 +38,7 @@ impl UserRepository {
         Ok(result.next().unwrap().unwrap())
     }
     
-    pub fn query_get_by_username(conn : Connection, username : String) -> Result<User> {
+    pub fn get_by_username(conn : Connection, username : String) -> Result<User> {
         let mut stmt = conn.prepare_cached(
             &query_builder::select(Self::TABLE_NAME)
                 .filter("username == :username")
@@ -47,5 +48,21 @@ impl UserRepository {
             ":username": username
         })?);
         Ok(result.next().unwrap().unwrap())
+    }
+    
+    pub fn save(conn : Connection, user : User) -> Result<usize> {
+        // This might not work as intended - it depends on how pinto builds the query
+        conn.execute_named(
+            &format!("INSERT OR REPLACE {}
+                (id, username, password, date_created)
+                VALUES (:id, :username, :password, :date_created)", Self::TABLE_NAME),
+            // &query_builder::insert(Self::TABLE_NAME)
+            // .set("id", ":id")
+            // .set("username", ":username")
+            // .set("password", ":password")
+            // .set("date_created", ":date_created")
+            // .build().to_string(),
+            &to_params_named(&user).unwrap().to_slice()
+        )
     }
 }

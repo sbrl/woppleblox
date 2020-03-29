@@ -1,6 +1,6 @@
 use chrono::{ DateTime, Utc };
 use chrono::serde::ts_milliseconds;
-use serde_derive::{Deserialize, Serialize};
+use serde_derive::{ Deserialize, Serialize };
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct User {
