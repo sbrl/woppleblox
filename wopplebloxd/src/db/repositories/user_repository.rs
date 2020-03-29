@@ -1,12 +1,9 @@
-use rusqlite::{ Statement, Result };
-use crate::db::definitions::{ Connection };
+use rusqlite::{ CachedStatement, Result, ToSql, MappedRows };
 use pinto::query_builder;
+use serde_rusqlite::from_rows;
 
-pub enum QueryType {
-    GetById(i64),
-    GetByName(String)
-}
-
+use crate::db::definitions::{ Connection };
+use crate::db::{ User };
 
 // #[macro_export]
 // macro_rules! prepare_sql {
@@ -17,38 +14,38 @@ pub enum QueryType {
 //     }
 // }
 
-pub struct UserRepository {
-    statement_by_id : Statement
-}
+pub struct UserRepository;
 
 impl UserRepository {
     const TABLE_NAME : &'static str = "users";
-    const COL_ID : &'static str = "id";
-    const COL_USERNAME : &'static str = "username";
-    const COL_PASSWORD : &'static str = "password";
-    const COL_DATE_CREATED : &'static str = "date_created";
     
     fn new(conn : Connection) -> UserRepository {
-        let result = UserRepository {
-            statement_by_id: Self::query_get_by_id(conn).unwrap()
-        };
-        result
+        UserRepository {
+            
+        }
     }
     
-    fn query_get_by_id(conn : Connection) -> Result<Statement> {
-        conn.prepare(
+    pub fn query_get_by_id(conn : Connection, id : i64) -> Result<User> {
+        let mut stmt = conn.prepare_cached(
             &query_builder::select(Self::TABLE_NAME)
                 .filter("id == :id")
                 .build().to_string()
-            // &format!("SELECT * FROM {} WHERE ", TABLE_NAME).to_string())
-        )
+        )?;
+        let mut result = from_rows::<User>(stmt.query_named(named_params!{
+            ":id": id
+        })?);
+        Ok(result.next().unwrap().unwrap())
     }
     
-    
-    
-    pub fn query(query_type : QueryType) {
-        // match query_type {
-        // 
-        // }
+    pub fn query_get_by_username(conn : Connection, username : String) -> Result<User> {
+        let mut stmt = conn.prepare_cached(
+            &query_builder::select(Self::TABLE_NAME)
+                .filter("username == :username")
+                .build().to_string()
+        )?;
+        let mut result = from_rows::<User>(stmt.query_named(named_params!{
+            ":username": username
+        })?);
+        Ok(result.next().unwrap().unwrap())
     }
 }

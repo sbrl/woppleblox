@@ -2,10 +2,10 @@ use chrono::{ DateTime, Utc };
 
 #[derive(Debug)]
 pub struct Alias {
-    id : i64,
-    owner_id : i64,
-    date_created : DateTime<Utc>,
-    name : String,
-    profile_description : String,
-    avatar_filename : String
+    pub id : i64,
+    pub owner_id : i64,
+    pub date_created : DateTime<Utc>,
+    pub name : String,
+    pub profile_description : String,
+    pub avatar_filename : String
 }

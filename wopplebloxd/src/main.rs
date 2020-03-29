@@ -6,6 +6,8 @@ extern crate pinto;
 
 #[macro_use]
 extern crate refinery;
+#[macro_use]
+extern crate rusqlite;
 
 #[macro_use]
 extern crate log;

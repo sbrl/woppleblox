@@ -1,9 +1,12 @@
 use chrono::{ DateTime, Utc };
+use chrono::serde::ts_milliseconds;
+use serde_derive::{Deserialize, Serialize};
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct User {
-    id : i64,
-    username : String,
-    password : String,
-    date_created : DateTime<Utc>
+    pub id : i64,
+    pub username : String,
+    pub password : String,
+    #[serde(with = "ts_milliseconds")]
+    pub date_created : DateTime<Utc>
 }
