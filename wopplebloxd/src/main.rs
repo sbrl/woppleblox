@@ -22,6 +22,7 @@ mod db;
 mod global_state;
 mod http_server;
 mod templates;
+mod intl;
 
 use std::fs;
 use std::process;
@@ -86,9 +87,6 @@ fn main() {
         settings.http.port = matches.value_of("port").unwrap()
             .parse().expect("Error: Invalid port number");
     }
-    
-    
-    // TODO: Read the config file here
     
     match matches.subcommand_name() {
         Some("server") => {
