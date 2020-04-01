@@ -17,7 +17,7 @@ impl GlobalState {
         return GlobalState {
             sitename: "Woppleblox".to_string(),
             db : Database::new(settings.db.filename),
-            translations: Translations::new()
+            translations: Translations::new(false)
         }
     }
 }

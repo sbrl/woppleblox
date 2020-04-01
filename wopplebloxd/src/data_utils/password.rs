@@ -22,8 +22,8 @@ fn password_verify(secret: &str, hash: &str, password: &str) -> bool {
 }
 
 pub trait HasPassword {
-    fn password_update(&mut self, new_password: &str);
-    fn password_verify(&self, password: &str) -> bool;
+    fn password_update(&mut self, secret: &str, new_password: &str);
+    fn password_verify(&self, secret: &str, password: &str) -> bool;
 }
 
 impl HasPassword for User {
