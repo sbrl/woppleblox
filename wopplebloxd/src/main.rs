@@ -3,6 +3,7 @@ extern crate pretty_env_logger;
 
 extern crate chrono;
 extern crate pinto;
+extern crate argonautica;
 
 #[macro_use]
 extern crate refinery;
@@ -23,6 +24,7 @@ mod global_state;
 mod http_server;
 mod templates;
 mod intl;
+mod data_utils;
 
 use std::fs;
 use std::process;

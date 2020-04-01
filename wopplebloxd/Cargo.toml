@@ -30,14 +30,16 @@ fluent = "0.11.0"		# Translations
 # diesel = { version = "1.0.0", features = ["sqlite"] }
 # schemamama = "*"
 # schemamama_rusqlite = "*"
-rusqlite = { version = "0.21.0", features = ["chrono"] }	# SQLite
+rusqlite = { version = "0.21.0", features = ["chrono"] }		# SQLite
 r2d2 = "0.8.8"					# Connection pooling
 r2d2_sqlite = "0.14.0"			# Connection pooling
 serde_rusqlite = "0.23.0"		# Easy de/serialisation to/from Rust types when talking to an SQLite database 
-refinery = { version = "0.2.1", features = ["rusqlite"] }	# DB migrations
+refinery = { version = "0.2.1", features = ["rusqlite"] }		# DB migrations
 pinto = "0.6.1"					# SQL query builder
 
-chrono = { version = "0.4.11", features = ["serde"] }		# Datetime handling library
+chrono = { version = "0.4.11", features = ["serde"] }			# Datetime handling library
+
+argonautica = { version = "0.2", features = ["serde", "simd"] }	# Password hashing
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
 pretty_env_logger = "0.4"	# The logging implementation we've chosen for the above
