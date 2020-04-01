@@ -8,6 +8,7 @@ mod embedded_files;
 
 // HACK: FluentBundle doesn't #[derive(Clone)], so this does that for it
 // Ref https://doc.rust-lang.org/std/clone/trait.Clone.html#how-can-i-implement-clone
+// Doesn't appear to have had the desired effect though :-/
 impl<FluentResource> Clone for FluentBundle<FluentResource> {
     fn clone(&self) -> Self {
         *self
