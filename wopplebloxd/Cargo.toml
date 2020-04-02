@@ -24,7 +24,8 @@ mime_guess = "2"		# File type extension -> mime type converter
 yarte = "0.7"			# Templating library
 
 unic-langid = { version = "0.8.0", features = ["macros"] }	# Language id handling
-fluent = "0.11.0"		# Translations
+fluent = "0.11.0"			# Translations
+accept-language = "2.0.0"	# Accept-language header parsing
 
 # Database ORM
 # diesel = { version = "1.0.0", features = ["sqlite"] }
