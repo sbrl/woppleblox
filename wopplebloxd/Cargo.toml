@@ -40,6 +40,7 @@ pinto = "0.6.1"					# SQL query builder
 chrono = { version = "0.4.11", features = ["serde"] }			# Datetime handling library
 
 argonautica = { version = "0.2", features = ["serde", "simd"] }	# Password hashing
+# regex = "1"		# Regex support
 
 log = "0.4"			# Apparently Rust has an entire logging setup - this is the base crate
 pretty_env_logger = "0.4"	# The logging implementation we've chosen for the above

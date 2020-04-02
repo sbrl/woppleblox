@@ -1,1 +1,24 @@
-<p></p>
+<p>{{str_firstrun_welcome}}</p>
+
+<form class="" action="/firstrun" method="post">
+	<fieldset>
+		<legend>{{str_firstrun_label_admindetails}}</legend>
+		
+		<label for="username">{{str_label_username}}</label>
+		<input type="text" name="username" id="username" />
+		<br />
+		<label for="password">{{str_label_password}}</label>
+		<input type="password" name="password" id="password" />
+		<br />
+		<label for="password">{{str_label_password_repeat}}</label>
+		<input type="password" name="password-repeat" id="password-repeat" />
+	</fieldset>
+	<fieldset>
+		<legend>{{str_firstrun_label_info}}</legend>
+		
+		<label for="password">{{str_label_secret}}</label>
+		<input type="text" name="secret" id="secret" autocomplete="off" />
+	</fieldset>
+	
+	<input type="submit" value="{{str_firstrun_button_begin}}" />
+</form>
