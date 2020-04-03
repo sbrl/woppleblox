@@ -13,6 +13,8 @@ impl Clone for Translations {
     }
 }
 
+// Fluent example: https://github.com/projectfluent/fluent-rs/blob/master/fluent-bundle/examples/simple-app.rs
+
 pub struct Translations {
     langs: HashMap<LanguageIdentifier, FluentBundle<FluentResource>>
 }
