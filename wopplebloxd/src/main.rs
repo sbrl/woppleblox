@@ -31,7 +31,7 @@ use std::process;
 use std::path::Path;
 
 use clap::{Arg, App, SubCommand};
-// use futures::executor::block_on;
+use futures::executor::block_on;
 
 use settings::Settings;
 use global_state::GlobalState;
@@ -96,8 +96,6 @@ fn main() {
             // This is required because we move the value of the settings variable when creating the WopplebloxApp instance - and hence we can't access it here anymore.
             // We _could_ copy the entirety of settings instead(?), but since we can avoid that we will.
             let port = settings.http.port;
-            
-            let global_state = GlobalState::new(settings.clone());
             let app = http_server::WopplebloxApp::new(settings);
             
             
@@ -105,8 +103,8 @@ fn main() {
             // Note that we pass in the port number here to satisfy actix_rt (are we even using it?)
             // block_on is from the futures crate and runs a future (basically a Promise) to completion. The .await syntax is weird - not sure what that actually does just yet.
             // More advanced options are also available. More information: https://rust-lang.github.io/async-book/01_getting_started/04_async_await_primer.html
-            // match block_on(app.start(port, global_state)) {
-            match app.start(port, global_state) {
+            // match block_on(app.start(port)) {
+            match app.start(port) {
                 Ok(_) => {
                     info!("Server exited normally.");
                 },

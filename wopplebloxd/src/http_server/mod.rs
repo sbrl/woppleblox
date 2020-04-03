@@ -24,11 +24,14 @@ impl WopplebloxApp {
         }
     }
     
+    
     #[actix_rt::main]
-    pub async fn start(&self, port: i16, global_state : GlobalState) -> std::io::Result<()> {
+    pub async fn start(&self, port: i16) -> Result<(), std::io::Error> {
         let address = format!("127.0.0.1:{}", port);
         
         handlers::print_embedded_files();
+        
+        let data = web::Data::new(GlobalState::new(self.settings.clone()));
         
         info!("Starting listener on http://{}", address);
         
@@ -38,7 +41,7 @@ impl WopplebloxApp {
              * We may be able to snaffle some of this from the Node.js version.
              */
             App::new()
-                .data(global_state.clone())
+                .app_data(data.clone())
                 .wrap(Logger::default())
                 .route("/static/{filepath:.*}", web::get().to(handlers::handle_static))
                 .route("/", web::get().to(index))
@@ -48,8 +51,6 @@ impl WopplebloxApp {
             .run()
             .await
     }
-    
-    
 }
 
 async fn index(state : web::Data<GlobalState>) -> impl Responder {

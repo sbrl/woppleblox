@@ -2,7 +2,7 @@ use crate::db::{Database};
 use crate::settings::Settings;
 use crate::intl::Translations;
 
-#[derive(Clone)]
+// #[derive(Clone)]
 pub struct GlobalState {
     pub sitename : String,
     pub db : Database,
