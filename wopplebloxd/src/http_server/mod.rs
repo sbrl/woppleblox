@@ -25,7 +25,6 @@ impl WopplebloxApp {
     }
     
     
-    #[actix_rt::main]
     pub async fn start(&self, port: i16) -> Result<(), std::io::Error> {
         let address = format!("127.0.0.1:{}", port);
         

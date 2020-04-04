@@ -36,7 +36,8 @@ use futures::executor::block_on;
 use settings::Settings;
 use global_state::GlobalState;
 
-fn main() {
+#[actix_rt::main]
+async fn main() {
     // Initialise the logging system
     pretty_env_logger::init();
     
@@ -104,7 +105,8 @@ fn main() {
             // block_on is from the futures crate and runs a future (basically a Promise) to completion. The .await syntax is weird - not sure what that actually does just yet.
             // More advanced options are also available. More information: https://rust-lang.github.io/async-book/01_getting_started/04_async_await_primer.html
             // match block_on(app.start(port)) {
-            match app.start(port) {
+            // match app.start(port) {
+            match app.start(port).await {
                 Ok(_) => {
                     info!("Server exited normally.");
                 },
