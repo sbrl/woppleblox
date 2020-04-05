@@ -5,6 +5,8 @@ extern crate chrono;
 extern crate pinto;
 extern crate argonautica;
 
+extern crate fluent;
+extern crate accept_language;
 #[macro_use]
 extern crate refinery;
 #[macro_use]
