@@ -23,7 +23,7 @@ futures = "*"			# Like JS Promises but in Rust, apparently
 
 rust-embed = "5.2.0"	# Embedded files
 mime_guess = "2"		# File type extension -> mime type converter
-yarte = "0.7"			# Templating library
+yarte = { version = "0.7", features = ["with-actix-web"] }	# Templating library
 
 unic-langid = { version = "0.8.0", features = ["macros"] }	# Language id handling
 fluent = "0.11.0"			# Translations

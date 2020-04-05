@@ -2,7 +2,7 @@
 
 <form class="" action="/firstrun" method="post">
 	<fieldset>
-		<legend>{{str_firstrun_label_admindetails}}</legend>
+		<legend>{{str_firstrun_header_admindetails}}</legend>
 		
 		<label for="username">{{str_label_username}}</label>
 		<input type="text" name="username" id="username" />
@@ -14,10 +14,11 @@
 		<input type="password" name="password-repeat" id="password-repeat" />
 	</fieldset>
 	<fieldset>
-		<legend>{{str_firstrun_label_info}}</legend>
+		<legend>{{str_firstrun_header_info}}</legend>
 		
 		<label for="password">{{str_label_secret}}</label>
 		<input type="text" name="secret" id="secret" autocomplete="off" />
+		<p>{{str_secret_explanation}}
 	</fieldset>
 	
 	<input type="submit" value="{{str_firstrun_button_begin}}" />
