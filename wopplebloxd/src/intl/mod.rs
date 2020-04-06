@@ -96,7 +96,7 @@ impl Translations {
 	 * @param	translation_code	The identifier of the string in the fluent translation file to substitute the arguments into and return.
 	 * @param	args				The FluentArgs to substitute in.
 	 */
-	fn translate(&self, wanted: &str, translation_code: &str, args: FluentArgs) -> Result<String, String> {
+	pub fn translate(&self, wanted: &str, translation_code: &str, args: FluentArgs) -> Result<String, String> {
 		let langs_wanted = self.negotiate_lang(wanted);
 		for lang in langs_wanted {
 			if !self.langs.contains_key(&lang) {
@@ -124,5 +124,14 @@ impl Translations {
 		}
 		
 		Err(format!("Error: Failed to fetch translation for code {} (does it exist in the fluent translation file?)", translation_code))
+	}
+	
+	/**
+	 * Convenient alternative to .translate() with fewer arguments.
+	 * @param	wanted				The accept-language header value.
+	 * @param	translation_code	The translation code string to fetch and translate.
+	 */
+	pub fn translate_simple(&self, wanted: &str, translation_code: &str) -> Result<String, String> {
+		self.translate(wanted, translation_code, FluentArgs::default())
 	}
 }

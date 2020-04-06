@@ -5,8 +5,9 @@ use crate::intl::Translations;
 // #[derive(Clone)]
 pub struct GlobalState {
     pub sitename : String,
+    pub settings : Settings,
     pub db : Database,
-    pub translations : Translations
+    pub tr : Translations
 }
 
 impl GlobalState {
@@ -16,8 +17,9 @@ impl GlobalState {
     pub fn new(settings : Settings) -> GlobalState {
         return GlobalState {
             sitename: "Woppleblox".to_string(),
+            settings: settings.clone(),
             db : Database::new(settings.db.filename),
-            translations: Translations::new(false)
+            tr: Translations::new(false)
         }
     }
 }

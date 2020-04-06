@@ -1,9 +1,23 @@
 use yarte::Template;
 
+/**
+ * Holds the parameters for the main template.
+ * The main template is special because it's applied by the page renderer and it wraps
+ * an existing template's content.
+ */
+pub struct PageParametersMain<'a> {
+	/**
+	 * The translation code for the title of this page.
+	 * Note that this translation code should only contain the string for the page
+	 * itself - the end bit is appended automatically.
+	 */
+	pub title_code: &'a str
+}
+
 #[derive(Template)]
 #[template(path = "index.html")]
 // #[template(path = "index.html", mode ="html-min")]
-pub struct Main<'a> {
+pub struct TemplateMain<'a> {
 	pub title: &'a str,
 	pub content: &'a str
 }
@@ -13,7 +27,7 @@ pub struct Main<'a> {
  */
 #[derive(Template)]
 #[template(path = "post.html")]
-pub struct FragmentPost<'a> {
+pub struct TemplateFragmentPost<'a> {
 	pub username: &'a str,
 	pub content: &'a str,
 	pub logo_url: &'a str
@@ -24,7 +38,7 @@ pub struct FragmentPost<'a> {
  */
 #[derive(Template)]
 #[template(path = "user-profile.html")]
-pub struct UserProfile<'a> {
+pub struct TemplateUserProfile<'a> {
 	pub username: &'a str,
 	pub posts: &'a str,
 	pub logo_url: &'a str
@@ -35,7 +49,7 @@ pub struct UserProfile<'a> {
  */
 #[derive(Template)]
 #[template(path = "firstrun.html")]
-pub struct FirstRun<'a> {
+pub struct TemplateFirstRun<'a> {
 	pub str_firstrun_welcome: &'a str,
 	pub str_firstrun_header_info: &'a str,
 	pub str_firstrun_button_begin: &'a str,
@@ -52,7 +66,7 @@ pub struct FirstRun<'a> {
  */
 #[derive(Template)]
 #[template(path = "login.html")]
-pub struct Login<'a> {
+pub struct TemplateLogin<'a> {
 	pub str_label_username: &'a str,
 	pub str_label_password: &'a str,
 	pub str_button_login: &'a str

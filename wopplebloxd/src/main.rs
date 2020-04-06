@@ -21,12 +21,17 @@ extern crate rust_embed;
 extern crate yarte;
 
 mod settings;
-mod db;
 mod global_state;
+mod db;
+mod intl;
+
+mod helpers_data;
+mod helpers_actix;
+mod helpers_templating;
+
 mod http_server;
 mod templates;
-mod intl;
-mod data_utils;
+mod views;
 
 use std::fs;
 use std::process;

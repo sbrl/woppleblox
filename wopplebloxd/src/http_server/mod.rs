@@ -53,7 +53,7 @@ impl WopplebloxApp {
 }
 
 async fn index(state : web::Data<GlobalState>) -> impl Responder {
-    let body_text = (templates::Main {
+    let body_text = (templates::TemplateMain {
         title: "Test page",
         content: &format!("Hello, world from {}!", state.sitename)
     }).call().unwrap();
