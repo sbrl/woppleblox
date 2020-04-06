@@ -8,16 +8,18 @@ use crate::helpers_actix::HttpRequestHelper;
 // use crate::yarte::Template;
 use crate::helpers_templating::PageRenderer;
 
+use crate::translate;
 
 pub struct ViewFirstRun;
 
 impl ViewFirstRun {
 	pub fn render(global_state: GlobalState, req: HttpRequest) -> String {
 		let template = TemplateFirstRun {
-			str_firstrun_welcome: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_firstrun_welcome"
-			).unwrap(),
+			str_firstrun_welcome: translate!(global_state, req, "str_firstrun_welcome" ),
+			// str_firstrun_welcome: &global_state.tr.translate_simple(
+			// 	&req.get_req_lang(),
+			// 	"str_firstrun_welcome"
+			// ).unwrap(),
 			str_firstrun_header_info: &global_state.tr.translate_simple(
 				&req.get_req_lang(),
 				"str_firstrun_header_info"

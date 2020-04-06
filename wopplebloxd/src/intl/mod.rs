@@ -7,6 +7,7 @@ use unic_langid::{ LanguageIdentifier, langid };
 use unic_langid::LanguageIdentifierError;
 
 mod embedded_files;
+pub mod macros;
 
 impl Clone for Translations {
 	fn clone(&self) -> Self {
