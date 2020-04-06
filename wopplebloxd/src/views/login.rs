@@ -15,9 +15,9 @@ pub struct ViewLogin;
 impl ViewLogin {
 	pub fn render(global_state: GlobalState, req: HttpRequest) -> String {
 		let template = TemplateLogin {
-			str_label_username: translate!(global_state, req, "str_label_username"),
-			str_label_password: translate!(global_state, req, "str_label_password"),
-			str_button_login: translate!(global_state, req, "str_button_login"),
+			str_label_username:	translate!(global_state, req, "str_label_username"),
+			str_label_password:	translate!(global_state, req, "str_label_password"),
+			str_button_login:	translate!(global_state, req, "str_button_login"),
 		};
 		
 		PageRenderer::render_main(
