@@ -15,43 +15,28 @@ pub struct ViewFirstRun;
 impl ViewFirstRun {
 	pub fn render(global_state: GlobalState, req: HttpRequest) -> String {
 		let template = TemplateFirstRun {
-			str_firstrun_welcome: translate!(global_state, req, "str_firstrun_welcome" ),
 			// str_firstrun_welcome: &global_state.tr.translate_simple(
-			// 	&req.get_req_lang(),
-			// 	"str_firstrun_welcome"
+			//	&req.get_req_lang(),
+			//	"str_firstrun_welcome"
 			// ).unwrap(),
-			str_firstrun_header_info: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_firstrun_header_info"
-			).unwrap(),
-			str_firstrun_button_begin: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_firstrun_button_begin"
-			).unwrap(),
-			str_label_username: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_username"
-			).unwrap(),
-			str_label_password: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_password"
-			).unwrap(),
-			str_label_password_repeat: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_password_repeat"
-			).unwrap(),
-			str_firstrun_header_admindetails: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_firstrun_header_admindetails"
-			).unwrap(),
-			str_label_secret: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_secret"
-			).unwrap(),
-			str_secret_explanation: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_secret_explanation"
-			).unwrap(),
+			str_firstrun_welcome:
+				translate!(global_state, req, "str_firstrun_welcome"),
+			str_firstrun_header_info:
+				translate!(global_state, req, "str_firstrun_header_info"),
+			str_firstrun_button_begin:
+				translate!(global_state, req, "str_firstrun_button_begin"),
+			str_label_username:
+				translate!(global_state, req, "str_label_username"),
+			str_label_password:
+				translate!(global_state, req, "str_label_password"),
+			str_label_password_repeat:
+				translate!(global_state, req, "str_label_password_repeat"),
+			str_firstrun_header_admindetails:
+				translate!(global_state, req, "str_firstrun_header_admindetails"),
+			str_label_secret:
+				translate!(global_state, req, "str_label_secret"),
+			str_secret_explanation:
+				translate!(global_state, req, "str_secret_explanation")
 		};
 		
 		PageRenderer::render_main(

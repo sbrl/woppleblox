@@ -8,24 +8,16 @@ use crate::helpers_actix::HttpRequestHelper;
 // use crate::yarte::Template;
 use crate::helpers_templating::PageRenderer;
 
+use crate::translate; 
 
 pub struct ViewLogin;
 
 impl ViewLogin {
 	pub fn render(global_state: GlobalState, req: HttpRequest) -> String {
 		let template = TemplateLogin {
-			str_label_username: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_username"
-			).unwrap(),
-			str_label_password: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_label_password"
-			).unwrap(),
-			str_button_login: &global_state.tr.translate_simple(
-				&req.get_req_lang(),
-				"str_button_login"
-			).unwrap(),
+			str_label_username: translate!(global_state, req, "str_label_username"),
+			str_label_password: translate!(global_state, req, "str_label_password"),
+			str_button_login: translate!(global_state, req, "str_button_login"),
 		};
 		
 		PageRenderer::render_main(
