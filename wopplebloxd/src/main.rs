@@ -21,7 +21,7 @@ extern crate rust_embed;
 extern crate yarte;
 
 mod settings;
-mod global_state;
+mod state;
 mod db;
 mod intl;
 
@@ -38,11 +38,10 @@ use std::fs;
 use std::process;
 use std::path::Path;
 
-use clap::{Arg, App, SubCommand};
+use clap::{ Arg, App, SubCommand };
 use futures::executor::block_on;
 
 use settings::Settings;
-use global_state::GlobalState;
 
 #[actix_rt::main]
 async fn main() {

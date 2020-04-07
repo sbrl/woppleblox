@@ -1,7 +1,7 @@
 use actix_web::{ HttpRequest, Responder };
 use fluent::fluent_args;
 
-use crate::global_state::GlobalState;
+use crate::state::GlobalState;
 use crate::yarte::Template;
 use crate::templates::{ PageParametersMain, TemplateMain };
 use crate::helpers_actix::HttpRequestHelper;

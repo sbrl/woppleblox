@@ -6,8 +6,8 @@ use actix_web::middleware::Logger;
 mod handlers;
 mod routes;
 
-use crate::global_state::GlobalState;
-use crate::settings::{Settings};
+use crate::state::GlobalState;
+use crate::settings::{ Settings };
 use crate::templates;
 use yarte::Template; // Apparently .render() is part of the trait (who'd have guessed?), so we need to use it here
 

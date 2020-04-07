@@ -1,7 +1,7 @@
 use actix_web::web;
 use actix_web::{ HttpRequest, Responder };
 
-use crate::global_state::GlobalState;
+use crate::state::GlobalState;
 // use crate::templates::TemplateFirstRun;
 use crate::views::ViewFirstRun;
 
