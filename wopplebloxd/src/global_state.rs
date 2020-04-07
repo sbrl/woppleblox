@@ -1,4 +1,4 @@
-use crate::db::{Database};
+use crate::db::{ Database, repositories::UserRepository };
 use crate::settings::Settings;
 use crate::intl::Translations;
 
@@ -16,11 +16,14 @@ impl GlobalState {
     //     GlobalState::default()
     // }
     pub fn new(settings : Settings) -> GlobalState {
-        return GlobalState {
+        let db = Database::new(settings.db.filename);
+        
+        GlobalState {
             sitename: "Woppleblox".to_string(),
             settings: settings.clone(),
-            db : Database::new(settings.db.filename),
-            tr: Translations::new(false)
+            db : db,
+            tr: Translations::new(false),
+            env: GlobalEnvironment::new(db)
         }
     }
 }
@@ -32,7 +35,8 @@ pub struct GlobalEnvironment {
 impl GlobalEnvironment {
     pub fn new(db: Database) -> GlobalEnvironment {
         GlobalEnvironment {
-            firstrun_complete: // TODO: Use db.conn() and a repo to determine whether there are any users in the system yet
+            // The firstrun wizard is complete if we have more than 1 user in the system
+            firstrun_complete: UserRepository::has_users(db.conn()).unwrap()
         }
     }
 }

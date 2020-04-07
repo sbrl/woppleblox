@@ -26,7 +26,7 @@ impl UserRepository {
         }
     }
     
-    pub fn have_users(conn : Connection) -> Result<bool> {
+    pub fn has_users(conn : Connection) -> Result<bool> {
         let mut stmt = conn.prepare_cached(
             &format!("SELECT exists (SELECT 1 from {})", Self::TABLE_NAME)
         )?;

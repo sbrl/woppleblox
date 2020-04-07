@@ -5,7 +5,7 @@ use r2d2_sqlite::{ self, SqliteConnectionManager };
 mod dataclasses;
 mod definitions;
 mod migrations;
-mod repositories;
+pub mod repositories;
 
 // pub use dataclasses::{User, Alias, Post, Attachment};
 pub use dataclasses::user::User;
@@ -13,8 +13,8 @@ pub use dataclasses::alias::Alias;
 pub use dataclasses::post::Post;
 pub use dataclasses::attachment::Attachment;
 
-use migrations::SqliteMigrator;
 use definitions::{ Pool, Connection };
+use migrations::SqliteMigrator;
 
 // pub use User;
 // pub use Alias;
@@ -49,7 +49,7 @@ impl Database {
         migrator.migrate(&mut self.con.get().expect("Error: Failed to get a connection form the pool to the SQLite database to perform database migrations on startup."));
     }
     
-    pub fn conn(&mut self) -> PooledConnection {
+    pub fn conn(&mut self) -> Connection {
         self.con.get().unwrap()
     }
 }
