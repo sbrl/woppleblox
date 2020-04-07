@@ -3,8 +3,8 @@ use r2d2_sqlite::{ self, SqliteConnectionManager };
 // use chrono::DateTime;
 
 mod dataclasses;
-mod definitions;
 mod migrations;
+pub mod definitions;
 pub mod repositories;
 
 // pub use dataclasses::{User, Alias, Post, Attachment};
@@ -13,7 +13,7 @@ pub use dataclasses::alias::Alias;
 pub use dataclasses::post::Post;
 pub use dataclasses::attachment::Attachment;
 
-use definitions::{ Pool, Connection };
+pub use definitions::{ Pool, Connection };
 use migrations::SqliteMigrator;
 
 // pub use User;

@@ -27,12 +27,14 @@ impl UserRepository {
     }
     
     pub fn has_users(conn : Connection) -> Result<bool> {
+        info!("Query: {}", format!("SELECT exists (SELECT 1 from {})", Self::TABLE_NAME));
         let mut stmt = conn.prepare_cached(
             &format!("SELECT exists (SELECT 1 from {})", Self::TABLE_NAME)
         )?;
-        Ok(match stmt.query_value().unwrap().as_ref() {
-            "1" => true,
-            _ => false
+        let value: i8 = stmt.query_value().unwrap();
+        Ok(match value {
+            0 => false,
+            _ => true
         })
     }
     
