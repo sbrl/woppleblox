@@ -4,10 +4,11 @@ use crate::intl::Translations;
 
 // #[derive(Clone)]
 pub struct GlobalState {
-    pub sitename : String,
-    pub settings : Settings,
-    pub db : Database,
-    pub tr : Translations
+    pub sitename: String,
+    pub settings: Settings,
+    pub db: Database,
+    pub tr: Translations,
+    pub env: GlobalEnvironment
 }
 
 impl GlobalState {
@@ -22,4 +23,12 @@ impl GlobalState {
             tr: Translations::new(false)
         }
     }
+}
+
+pub struct GlobalEnvironment {
+    pub firstrun_complete: bool
+}
+
+impl GlobalEnvironment {
+    pub fn new()
 }

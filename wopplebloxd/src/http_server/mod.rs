@@ -4,6 +4,7 @@ use actix_web::middleware::Logger;
 // use futures::future::FutureExt;
 
 mod handlers;
+mod routes;
 
 use crate::global_state::GlobalState;
 use crate::settings::{Settings};
@@ -43,6 +44,7 @@ impl WopplebloxApp {
                 .app_data(data.clone())
                 .wrap(Logger::default())
                 .route("/static/{filepath:.*}", web::get().to(handlers::handle_static))
+                .route("/firstrun", web::get().to(routes::RouteFirstRun::main))
                 .route("/", web::get().to(index))
         })
             .keep_alive(120) // TODO: Read this from a config file here

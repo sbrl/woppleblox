@@ -13,7 +13,7 @@ use crate::translate;
 pub struct ViewFirstRun;
 
 impl ViewFirstRun {
-	pub fn render(global_state: GlobalState, req: HttpRequest) -> String {
+	pub fn render(global_state: &GlobalState, req: &HttpRequest) -> String {
 		let template = TemplateFirstRun {
 			// str_firstrun_welcome: &global_state.tr.translate_simple(
 			//	&req.get_req_lang(),

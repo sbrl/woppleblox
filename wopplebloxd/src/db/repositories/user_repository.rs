@@ -2,6 +2,7 @@ use rusqlite::{ CachedStatement, Result, ToSql, MappedRows };
 use pinto::query_builder;
 use serde_rusqlite::{ from_rows, to_params_named };
 
+use crate::helpers_data::db_conn::StatementHelper;
 use crate::db::definitions::{ Connection };
 use crate::db::{ User };
 
@@ -23,6 +24,16 @@ impl UserRepository {
         UserRepository {
             
         }
+    }
+    
+    pub fn have_users(conn : Connection) -> Result<bool> {
+        let mut stmt = conn.prepare_cached(
+            &format!("SELECT exists (SELECT 1 from {})", Self::TABLE_NAME)
+        )?;
+        Ok(match stmt.query_value().unwrap().as_ref() {
+            "1" => true,
+            _ => false
+        })
     }
     
     pub fn get_by_id(conn : Connection, id : i64) -> Result<User> {
