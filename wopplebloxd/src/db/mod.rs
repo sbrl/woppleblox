@@ -48,4 +48,8 @@ impl Database {
         let migrator = SqliteMigrator::default();
         migrator.migrate(&mut self.con.get().expect("Error: Failed to get a connection form the pool to the SQLite database to perform database migrations on startup."));
     }
+    
+    pub fn conn(&mut self) -> PooledConnection {
+        self.con.get().unwrap()
+    }
 }

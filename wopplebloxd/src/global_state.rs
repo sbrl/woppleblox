@@ -30,5 +30,9 @@ pub struct GlobalEnvironment {
 }
 
 impl GlobalEnvironment {
-    pub fn new()
+    pub fn new(db: Database) -> GlobalEnvironment {
+        GlobalEnvironment {
+            firstrun_complete: // TODO: Use db.conn() and a repo to determine whether there are any users in the system yet
+        }
+    }
 }
