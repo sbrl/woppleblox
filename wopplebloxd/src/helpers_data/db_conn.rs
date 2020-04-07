@@ -1,11 +1,11 @@
 use rusqlite::{ CachedStatement, NO_PARAMS, RowIndex };
 
 pub trait StatementHelper {
-    fn query_value(&self) -> Result<String, String>;
+    fn query_value(&mut self) -> Result<String, String>;
 }
 
 impl StatementHelper for CachedStatement<'_> {
-    fn query_value(&self) -> Result<String, String> {
+    fn query_value(&mut self) -> Result<String, String> {
         let mut rows = match self.query(NO_PARAMS) {
             Ok(rows) => rows,
             Err(err) => return Err(err.to_string())

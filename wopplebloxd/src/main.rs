@@ -28,7 +28,7 @@ mod intl;
 mod helpers_data;
 mod helpers_actix;
 mod helpers_templating;
-mod helpers_misc;
+// mod helpers_misc;
 
 mod http_server;
 mod templates;

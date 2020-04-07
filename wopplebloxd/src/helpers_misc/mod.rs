@@ -1,12 +1,15 @@
-pub trait NormalResult<T> {
+use std::result::Result;
+
+pub trait StringResult<T> {
     fn make_normal(&self) -> std::result::Result<T, String>;
 }
 
-impl NormalResult<T> for rusqlite::Result<T> {
+impl<T> StringResult<T> for Result<T, String> {
     fn make_normal(&self) -> std::result::Result<T, String> {
-        match self {
-            rusqlite::Result::Ok(val) => std::result::Result::Ok(val),
-            rusqlite::Result::Err(error) =>  std::result::Result::Err(error.to_string())
+        let copy = self.clone();
+        match copy {
+            Ok(val) => std::result::Result::Ok(val: T),
+            Err(error) => std::result::Result::Err(error.to_string())
         }
     }
 }
