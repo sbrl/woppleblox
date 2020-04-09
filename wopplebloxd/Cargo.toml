@@ -17,7 +17,7 @@ clap = "2.33"			# CLI argument parser
 # actix = "0.9.0"			# ?
 actix-web = "2.0"		# Web framework
 actix-rt = "1.0"		# Who knows?
-# actix-service = "1.0"
+actix-service = "1.0"	# Middleware, I think
 
 futures = "*"			# Like JS Promises but in Rust, apparently
 

@@ -5,6 +5,7 @@ use actix_web::middleware::Logger;
 
 mod handlers;
 mod routes;
+mod middleware;
 
 use crate::state::GlobalState;
 use crate::settings::{ Settings };
