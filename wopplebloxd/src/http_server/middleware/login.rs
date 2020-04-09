@@ -7,6 +7,13 @@ use actix_web::{ dev::{ ServiceRequest, ServiceResponse }, Error };
 use futures::future;
 use futures::Future;
 
+/*
+ * TODO: Rip this all out.
+ * It looks like the wrap_fn  option allows us to both pre-process *and* post-process.
+ * Ref: https://actix.rs/docs/middleware/
+ * Look for the bit directly after "Alternatively, for simple use cases, you can use wrap_fn to create small, ad-hoc middlewares"
+ */
+
 pub struct MiddlewareLoginBuilder;
 
 impl<NextServiceType, ResponseBodyType> Transform<NextServiceType> for MiddlewareLoginBuilder
