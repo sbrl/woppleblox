@@ -85,7 +85,7 @@ task_run() {
 		export RUST_LOG="debug";
 	fi
 	
-	execute cargo run -- server;
+	execute cargo run ${SBRL_CARGO_FLAGS} -- server;
 	
 	task_end $?;
 }
