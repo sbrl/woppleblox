@@ -11,36 +11,36 @@ serde = { version = "1.0", features = ["derive"] }	# Serialisation
 serde_derive = "1.0"	# Serialisation helper
 toml = "0.5"			# TOML serialisation module
 
-clap = "2.33"			# CLI argument parser
+clap = "2"				# CLI argument parser
 
 # num_cpus = "1.12.0"
-# actix = "0.9.0"			# ?
-actix-web = "2.0"		# Web framework
-actix-rt = "1.0"		# Who knows?
-actix-service = "1.0"	# Middleware, I think
+# actix = "0.9.0"		# ?
+actix-web = "3"			# Web framework
+actix-rt = "1"			# Who knows?
+actix-service = "1"	# Middleware, I think
 
 futures = "*"			# Like JS Promises but in Rust, apparently
 
-rust-embed = "5.2.0"	# Embedded files
+rust-embed = "5.2"	# Embedded files
 mime_guess = "2"		# File type extension -> mime type converter
-yarte = { version = "0.7", features = ["with-actix-web"] }	# Templating library
+yarte = { version = "0.12" }	# Templating library
 
-unic-langid = { version = "0.8.0", features = ["macros"] }	# Language id handling
-fluent = "0.11.0"			# Translations
+unic-langid = { version = "0.9", features = ["macros"] }	# Language id handling
+fluent = "0.13"			# Translations
 accept-language = "2.0.0"	# Accept-language header parsing
 
 # Database ORM
 # diesel = { version = "1.0.0", features = ["sqlite"] }
 # schemamama = "*"
 # schemamama_rusqlite = "*"
-rusqlite = { version = "0.21.0", features = ["chrono"] }		# SQLite
-r2d2 = "0.8.8"					# Connection pooling
-r2d2_sqlite = "0.14.0"			# Connection pooling
-serde_rusqlite = "0.23.0"		# Easy de/serialisation to/from Rust types when talking to an SQLite database 
-refinery = { version = "0.2.1", features = ["rusqlite"] }		# DB migrations
-pinto = "0.6.1"					# SQL query builder
+rusqlite = { version = "0.24", features = ["chrono"] }		# SQLite
+r2d2 = "0.8"					# Connection pooling
+r2d2_sqlite = "0.17"			# Connection pooling
+serde_rusqlite = "0.26"			# Easy de/serialisation to/from Rust types when talking to an SQLite database 
+refinery = { version = "0.3", features = ["rusqlite"] }		# DB migrations
+pinto = "0.6"					# SQL query builder
 
-chrono = { version = "0.4.11", features = ["serde"] }			# Datetime handling library
+chrono = { version = "0.4", features = ["serde"] }			# Datetime handling library
 
 argonautica = { version = "0.2", features = ["serde", "simd"] }	# Password hashing
 # regex = "1"		# Regex support
