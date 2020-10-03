@@ -33,10 +33,10 @@ accept-language = "2.0.0"	# Accept-language header parsing
 # diesel = { version = "1.0.0", features = ["sqlite"] }
 # schemamama = "*"
 # schemamama_rusqlite = "*"
-rusqlite = { version = "0.24", features = ["chrono"] }		# SQLite
+rusqlite = { version = "0.23.0", features = ["chrono"] }		# SQLite
 r2d2 = "0.8"					# Connection pooling
-r2d2_sqlite = "0.17"			# Connection pooling
-serde_rusqlite = "0.26"			# Easy de/serialisation to/from Rust types when talking to an SQLite database 
+r2d2_sqlite = "0.16"			# Connection pooling
+serde_rusqlite = "0.25"			# Easy de/serialisation to/from Rust types when talking to an SQLite database 
 refinery = { version = "0.3", features = ["rusqlite"] }		# DB migrations
 pinto = "0.6"					# SQL query builder
 
