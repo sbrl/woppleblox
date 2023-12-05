@@ -21,7 +21,7 @@ actix-service = "1"	# Middleware, I think
 
 futures = "*"			# Like JS Promises but in Rust, apparently
 
-rust-embed = "5.2"	# Embedded files
+rust-embed = "5.9"	# Embedded files
 mime_guess = "2"		# File type extension -> mime type converter
 yarte = { version = "0.12" }	# Templating library
 
@@ -33,7 +33,7 @@ accept-language = "2.0.0"	# Accept-language header parsing
 # diesel = { version = "1.0.0", features = ["sqlite"] }
 # schemamama = "*"
 # schemamama_rusqlite = "*"
-rusqlite = { version = "0.23.0", features = ["chrono"] }		# SQLite
+rusqlite = { version = "0.23.1", features = ["chrono"] }		# SQLite
 r2d2 = "0.8"					# Connection pooling
 r2d2_sqlite = "0.16"			# Connection pooling
 serde_rusqlite = "0.25"			# Easy de/serialisation to/from Rust types when talking to an SQLite database 
